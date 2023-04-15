@@ -130,3 +130,6 @@ dmypy.json
 
 # Local docs
 docs/
+
+# Vecotr db
+.chroma/
