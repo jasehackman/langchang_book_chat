@@ -1,0 +1,17 @@
+### Python Poetry ###
+/dist/
+/poetry.lock
+/pyproject.toml
+
+### Python ###
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdf
+*.log
+.env
+*.db
+
+### Docs ###
+docs/ 
