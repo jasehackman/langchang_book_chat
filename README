@@ -1,0 +1,33 @@
+# AI PDF Conversation App
+
+This simple Python app, powered by AI, allows you to have a conversation with a PDF document by passing in the path of the PDF.
+
+## Dependencies
+
+This project uses Poetry for dependency management. To install Poetry, follow the instructions on their official website: https://python-poetry.org/docs/#installation
+
+## Project Setup
+
+1. Clone the repository to your local machine.
+
+2. To install project dependencies run:
+```bash
+   poetry install
+```
+
+3. Activate the virtual environment created by Poetry:
+
+```bash
+poetry shell
+```
+
+## Usage
+
+To use the app, simply pass in the path of a PDF file as an argument:
+
+```bash
+python app.py --pdf /path/to/your/pdf/document.pdf
+```
+
+This will start an interactive session where you can have a conversation with the content of the PDF.
+
