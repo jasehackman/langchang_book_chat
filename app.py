@@ -20,8 +20,7 @@ def main():
     files = get_files(args.path)
     
     embeddings = OpenAIEmbeddings()
-    llm = OpenAI(temperature=0)
-    chat_llm = ChatOpenAI(model_name="gpt-3.5-turbo",temperature=0)
+    llm = OpenAI(temperature=1)
     vectorstores=[]
     retrievers=[]
     tools = []
@@ -52,7 +51,7 @@ def main():
         tools.append(tool)
 
     # Initialize the agent
-    agent = initialize_agent(tools, chat_llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
+    agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
     
     chat_history = []
 
