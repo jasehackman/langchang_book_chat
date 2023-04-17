@@ -1,33 +1,49 @@
-# AI PDF Conversation App
+# App.py
 
-This simple Python app, powered by AI, allows you to have a conversation with a PDF document by passing in the path of the PDF.
+This code enables users to interactively ask questions about PDF files stored in specific directories by indexing the file's content and generating a chat-like interface.
 
-## Dependencies
+## Requirements
 
-This project uses Poetry for dependency management. To install Poetry, follow the instructions on their official website: https://python-poetry.org/docs/#installation
+- You must use Poetry for virtual environment and package management
+- Python 3.6 or newer
 
-## Project Setup
+## Installation
 
-1. Clone the repository to your local machine.
-
-2. To install project dependencies run:
+Set up and install the required packages in a virtual environment using Poetry:
 ```bash
-   poetry install
+poetry install
 ```
 
-3. Activate the virtual environment created by Poetry:
+## Running the application
 
+To run this application:
 ```bash
-poetry shell
+poetry run python app.py --path PATH_TO_YOUR_DIRECTORY
 ```
 
-## Usage
 
-To use the app, simply pass in the path of a PDF file as an argument:
+Argument `--path` is optional, and if not provided, the default directory "docs/" will be used. Replace "PATH_TO_YOUR_DIRECTORY" with the path where your PDF files are stored.
 
-```bash
-python app.py --pdf /path/to/your/pdf/document.pdf
-```
+## How it works
 
-This will start an interactive session where you can have a conversation with the content of the PDF.
+The application performs the following steps:
 
+1. Parses the user-given (or default) directory and obtains a list of PDF files.
+2. Loads each PDF file and splits it into chunks for indexing.
+3. Indexes each document in memory, creating a searchable representation using OpenAIEmbeddings for semantic searching.
+4. Asks a language model (GPT) to provide a brief description of each document.
+5. Initializes an agent, using the indexed documents and the document description, to enable interactive querying.
+
+It provides a REPL-like interface where you can ask questions about the available documents. The agent retrieves the best-matching answer from the indexed documents.
+
+Press `Ctrl+C` to exit the tool.
+
+## Application Structure
+
+The code organizes the functionality into the following functions:
+
+- `main()`: Entry point of the application
+- `get_files(directory_path)`: Fetches PDF filenames from the directory
+- `load_document(file_name)`: Loads the specified PDF file and splits it into chunks
+- `index_document(documents, file_name, embeddings_api)`: Indexes the documents, creating a searchable representation
+- `get_document_description(llm, vectorstore)`: Retrieves a document description summary from GPT
